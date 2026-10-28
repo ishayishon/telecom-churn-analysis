@@ -1,0 +1,9 @@
+{
+  "selected_model": "Logistic Regression | Base",
+  "selection_metric": "validation churn F1",
+  "tie_breakers": [
+    "validation accuracy",
+    "model name"
+  ],
+  "seed": 42
+}

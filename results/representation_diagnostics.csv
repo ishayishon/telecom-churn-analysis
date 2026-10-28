@@ -1,0 +1,19 @@
+model,encoded_features,pca_components,retained_variance,clusters,silhouette
+Majority baseline,45,,,,
+Random Forest | Base,45,,,,
+AdaBoost | Base,45,,,,
+Logistic Regression | Base,45,,,,
+Random Forest | Service count,46,,,,
+AdaBoost | Service count,46,,,,
+Logistic Regression | Service count,46,,,,
+Random Forest | PCA,45,18.0,0.9578466779883392,,
+AdaBoost | PCA,45,18.0,0.9578466779883392,,
+Logistic Regression | PCA,45,18.0,0.9578466779883392,,
+Random Forest | KMeans,45,,,3.0,0.24404463664052076
+AdaBoost | KMeans,45,,,3.0,0.24404463664052076
+Logistic Regression | KMeans,45,,,3.0,0.24404463664052076
+Random Forest | PCA + KMeans,45,18.0,0.9578466779883392,3.0,0.25648266707321604
+AdaBoost | PCA + KMeans,45,18.0,0.9578466779883392,3.0,0.25648266707321604
+Logistic Regression | PCA + KMeans,45,18.0,0.9578466779883392,3.0,0.25648266707321604
+Voting (hard) | Base,45,,,,
+Voting (soft) | Base,45,,,,
