@@ -1,27 +1,61 @@
-# ניתוח נטישת לקוחות Telecom
+# Telecom Customer Churn Analysis
 
-פרויקט אקדמי בהדמיית נתונים המבוסס על טבלה של 7,043 לקוחות ו־21 עמודות. הניתוח כולל המחשות, השוואת קבוצות, הנדסת תכונות והשוואת מודלים לחיזוי נטישת לקוחות.
+An academic data visualization and machine learning project based on 7,043 customer records and 21 columns. The analysis combines exploratory charts, group comparisons, feature engineering, and classification models to investigate customer churn.
 
-## איפה מתחילים
+## Project Files
 
-- `Telecom_Churn_Report.html` — דוח עם הקוד, ההסברים, הגרפים והתוצאות; ניתן לפתוח בדפדפן בלי להתקין דבר.
-- `Telecom_Churn_Analysis.ipynb` — המחברת המלאה לעריכה ולהרצה ב־Jupyter.
-- `data/telecom_customers_churn.csv` — העתק זהה של הנתונים המקוריים. מקור חיצוני ורישיון שימוש לא אומתו.
-- `docs/assignment.pdf` — הוראות המרצה המקוריות.
-- `docs/requirements-checklist.md` — מיפוי הדרישות לניתוח.
-- `docs/methodology.md` — שיטת הניתוח ומגבלות הניסוי.
-- `results/` — טבלאות השוואה, תוצאות בדיקה וגרפים.
+- [Telecom_Churn_Report.html](Telecom_Churn_Report.html): the report with code, explanations, charts, and results. Download it and open it in a browser without installing anything.
+- [Telecom_Churn_Analysis.ipynb](Telecom_Churn_Analysis.ipynb): the complete Jupyter notebook for editing and execution.
+- `data/telecom_customers_churn.csv`: the supplied coursework dataset. Its external source and redistribution license have not been verified.
+- `docs/assignment.pdf`: the instructor's assignment requirements.
+- `docs/requirements-checklist.md`: a mapping from assignment requirements to the analysis.
+- `docs/methodology.md`: the analysis protocol and experimental limitations.
+- `results/`: comparison tables, test results, and figures.
 
-## הרצה חוזרת
+## Setup
 
-נבדק ב־Python 3.12. צרו סביבה וירטואלית והתקינו את `requirements.txt`. פתחו את המחברת מאותה תיקייה ובחרו Restart Kernel and Run All. אפשר גם להריץ `python scripts/run_project.py` מתוך הסביבה; הפעולה מריצה את כל המחברת בתהליך חדש ומייצאת דוח HTML.
+Tested with Python 3.12. Create a virtual environment:
 
-ההרצה מאמנת כמה מודלים ולכן עשויה להימשך מספר דקות. הפלטים בתיקיית results נכתבים מחדש. אין צורך בנתיב קבוע במחשב או בחומרי הארכיון.
+```sh
+python -m venv .venv
+```
 
-## מה נבדק
+Activate it on Windows PowerShell:
 
-החלוקה היא 60% אימון, 20% תיקוף ו־20% בדיקה, תוך שמירת שיעור הנטישה בכל חלק. בחירת המודל נעשית לפי F1 של נטישה על חלק התיקוף. רק לאחר הבחירה נמדד המודל הנבחר על חלק הבדיקה. קיימת גם השוואה לחיזוי מחלקת הרוב.
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-נבחנים Random Forest, AdaBoost ו־Logistic Regression, עם תכונות בסיס, ספירת שירותים, PCA, אשכולות KMeans ושילוב PCA ואשכולות. נבדקים גם שני מודלי הצבעה. המדדים המפורטים נשמרים בקבצים `results/validation_metrics.csv` ו־`results/test_metrics.json`.
+Or on macOS or Linux:
 
-התוצאות מתארות ניסוי אקדמי על מאגר הנתונים המצורף ואינן מעידות על ביצועים במערכת ייצור.
+```sh
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```sh
+python -m pip install -r requirements.txt
+```
+
+## Run
+
+Open the notebook from the project directory, select the environment's Python kernel, and choose **Restart Kernel and Run All**. Alternatively:
+
+```sh
+python scripts/run_project.py
+```
+
+The script starts a fresh kernel, executes every cell, and saves the executed notebook and HTML report. Training may take several minutes. Outputs under `results/` are overwritten. All paths are relative; archived course materials are not required.
+
+## Evaluation
+
+The data is split into stratified training, validation, and test partitions of 60%, 20%, and 20%. Models are selected by validation F1 for the churn class. The chosen configuration is then refitted on training and validation data and evaluated on the held-out test set. A majority-class baseline provides a reference.
+
+The experiments compare Random Forest, AdaBoost, and Logistic Regression with baseline features, a subscribed-service count, PCA, KMeans cluster indicators, and combined PCA and KMeans preprocessing. Hard and soft voting ensembles are also evaluated. Learned preprocessing is fitted within the training pipeline.
+
+Detailed metrics are saved in `results/validation_metrics.csv` and `results/test_metrics.json`. The saved Logistic Regression model with baseline features achieved **80.6% test accuracy** and **0.604 churn F1**.
+
+## Limitations
+
+Group comparisons describe associations and do not establish causation. A single split has sampling uncertainty. These academic experimental results do not demonstrate production performance.
